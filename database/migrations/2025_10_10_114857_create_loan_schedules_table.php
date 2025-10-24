@@ -22,7 +22,6 @@ return new class extends Migration
             $table->decimal('interest_amount', 15, 2)->nullable();
             $table->decimal('outstanding_amount', 15, 2)->nullable();
             $table->enum('status', ['pending', 'paid', 'overdue'])->default('pending');
-            $table->foreignId('payment_id')->nullable()->constrained('payments')->onDelete('set null');
             $table->timestamps();
         });
     }

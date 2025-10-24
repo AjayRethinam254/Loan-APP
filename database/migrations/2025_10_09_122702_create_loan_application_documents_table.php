@@ -37,4 +37,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('loan_application_documents');
     }
+    
 };

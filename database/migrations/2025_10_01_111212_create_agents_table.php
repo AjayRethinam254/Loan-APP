@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('district')->nullable();
             $table->string('state')->nullable();
             $table->string('pincode')->nullable();
-            $table-enum('status', ['active', 'inactive'])->default('active');
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->boolean('is_deleted')->default(false);
             $table->timestamps();
         });
