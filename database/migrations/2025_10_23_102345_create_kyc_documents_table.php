@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('kyc_documents', function (Blueprint $table) {
             $table->id();
-            $foriegnId('kyc_id')->constrained('kyc_details')->onDelete('cascade');
+            $table->foreignId('kyc_id')->constrained('kyc_details')->onDelete('cascade');
             $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
             $table->string('aadhar_front')->nullable();
             $table->string('aadhar_back')->nullable();
             $table->string('pan_card')->nullable();
             $table->string('passbook')->nullable();
-            $table->boolean('is_verified')->default('passbook_statement');
+            $table->boolean('is_verified')->default(false);
             $table->enum('status', ['pending', 'verified', 'rejected'])->default('pending');
             $table->string('remarks')->nullable(); 
             $table->timestamps();
