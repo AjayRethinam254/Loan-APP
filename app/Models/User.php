@@ -20,6 +20,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'role_id',
+        'phone',
         'email',
         'password',
     ];
@@ -45,6 +47,23 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    //code after default
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function clients()
+    {
+        return $this->hasMany(Client::class);
+    }
+
+    public function kycDocuments()
+    {
+        return $this->hasMany(KycDocument::class);
     }
 }
 
