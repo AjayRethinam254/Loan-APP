@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('loan_application_documents', function (Blueprint $table) {
             $table->id();       
+            $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
             $table->foreignId('loan_application_id')->constrained('loan_applications')->onDelete('cascade');
             $table->string('document_type');       
             $table->string('file_name');           

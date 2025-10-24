@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('client_name');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('client_email')->nullable();
+            $table->string('client_phone')->nullable();
             $table->string('alternate_phone')->nullable();
             $table->string('address')->nullable();
             $table->date('date_of_birth')->nullable();
