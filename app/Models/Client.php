@@ -49,6 +49,22 @@ class Client extends Model
     {
         return $this->hasMany(Payment::class);
     }
+
+    protected static function booted()
+    {
+        static::creating(function ($client) {
+            if (!isset($client->user_id)) {
+                $user = User::create([
+                    'name' => $client->name ?? 'Guest',
+                    'phone' => $client->phone,
+                    'role_id' => 3,
+                    'email' => $client->email ?? null,
+                ]);
+
+                $client->user_id = $user->id;
+            }
+        });
+    }
     
 }
 
